@@ -1,0 +1,408 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  FaultQualityIssue:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Numero de la linea
+        DataType: Text
+        Default: ="Line 2"
+      OnCancelPressed:
+        PropertyKind: Event
+        DisplayName: OnCancelPressed
+        Description: Se dispara al presionar CANCEL - volver a LogFailure
+        ReturnType: Boolean
+        Default: =false
+      OnConfirmPressed:
+        PropertyKind: Event
+        DisplayName: OnConfirmPressed
+        Description: Se dispara al confirmar - leer varFaultDetail y varFaultNote
+        ReturnType: Boolean
+        Default: =false
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_qi:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_qi:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(200, 140, 0, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_qi:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =FaultQualityIssue.LineNumber & " — " & FaultQualityIssue.JobOrder
+                  - lbl_stage_qi:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(255, 240, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="⚠ QUALITY ISSUE"
+                        Width: =180
+            - cont_instruct_qi:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(36, 36, 36, 1)
+                  FillPortions: =0
+                  Height: =34
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_instruct_qi:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(180, 180, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =34
+                        Size: =12
+                        Text: ="SELECT FAULT TYPE"
+            - cont_row1_qi:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =170
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_labelchange_qi:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Label Change", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Label Change", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Label Change", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_labelchange_qi:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20h9'/><path d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Label Change")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_labelchange_qi:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Label Change")
+                              Size: =15
+                              Text: ="Label Change"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_spillage_qi:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Product Spillage", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Product Spillage", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Product Spillage", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_spillage_qi:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2v6'/><path d='m4.93 10.93 1.41 1.41'/><path d='M2 18h2'/><path d='M20 18h2'/><path d='m19.07 10.93-1.41 1.41'/><path d='M22 22H2'/><path d='M16 6l-4 4-4-4'/><path d='M12 16a4 4 0 0 0 0-8'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Product Spillage")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_spillage_qi:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Product Spillage")
+                              Size: =15
+                              Text: ="Product Spillage"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_row2_qi:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =170
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_bottlecap_qi:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Bottle / Cap Issue", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Bottle / Cap Issue", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Bottle / Cap Issue", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_bottlecap_qi:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M8 2h8'/><path d='M9 2v2.789a4 4 0 0 1-.672 2.219l-.656.984A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9.789a4 4 0 0 0-.672-2.219l-.656-.984A4 4 0 0 1 15 4.788V2'/><path d='M7 15a6.472 6.472 0 0 1 5 0 6.472 6.472 0 0 0 5 0'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Bottle / Cap Issue")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_bottlecap_qi:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Bottle / Cap Issue")
+                              Size: =15
+                              Text: ="Bottle / Cap Issue"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_supplyissue_qi:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Supply Issue (Labels)", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Supply Issue (Labels)", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Supply Issue (Labels)", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_supplyissue_qi:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/><line x1='12' y1='22' x2='12' y2='12'/><path d='m3.3 7 8.7 5 8.7-5'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Supply Issue (Labels)")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_supplyissue_qi:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Supply Issue (Labels)")
+                              Size: =15
+                              Text: ="Supply Issue (Labels)"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_note_qi:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =99
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  PaddingBottom: =6
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =6
+                  Width: =Parent.Width
+                Children:
+                  - lbl_note_key_qi:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(120, 120, 120, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =20
+                        Size: =11
+                        Text: ="NOTES (optional)"
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - txt_note_qi:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(60, 60, 60, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(36, 36, 36, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =61
+                        HintText: ="Add details about the fault..."
+                        HoverBorderColor: =RGBA(200, 140, 0, 1)
+                        Mode: =TextMode.MultiLine
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_actions_qi:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_cancel_qi:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(22, 75, 80, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =Set(varFaultDetail, "") ;FaultQualityIssue.OnCancelPressed()
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =16
+                        Text: ="CANCEL"
+                  - btn_confirm_qi:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(varFaultDetail), DisplayMode.Disabled, DisplayMode.Edit)
+                        Fill: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                        OnSelect: =FaultQualityIssue.OnConfirmPressed()
+                        PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                        Size: =16
+                        Text: ="LOG QUALITY ISSUE"

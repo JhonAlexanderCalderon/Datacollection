@@ -1,0 +1,351 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  FaultOperatorAbsence:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Numero de la linea
+        DataType: Text
+        Default: ="Line 2"
+      OnCancelPressed:
+        PropertyKind: Event
+        DisplayName: OnCancelPressed
+        Description: Se dispara al presionar CANCEL - volver a LogFailure
+        ReturnType: Boolean
+        Default: =false
+      OnConfirmPressed:
+        PropertyKind: Event
+        DisplayName: OnConfirmPressed
+        Description: Se dispara al confirmar - leer varFaultDetail y varFaultNote
+        ReturnType: Boolean
+        Default: =false
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_oa_1:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_oa_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(200, 140, 0, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_oa_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =FaultOperatorAbsence.LineNumber & " — " & FaultOperatorAbsence.JobOrder
+                  - lbl_stage_oa_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(255, 240, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="⚠ OPERATOR ABSENCE"
+                        Width: =220
+            - cont_instruct_oa:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(36, 36, 36, 1)
+                  FillPortions: =0
+                  Height: =34
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_instruct_oa:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(180, 180, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =34
+                        Size: =12
+                        Text: ="SELECT FAULT TYPE"
+            - cont_row1_oa:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =320
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_absent_oa:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Operator Absent", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Operator Absent", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Operator Absent", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =320
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =20
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =20
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_absent_oa:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =200
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/><circle cx='12' cy='7' r='4'/><line x1='18' y1='11' x2='23' y2='11'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Operator Absent")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_absent_oa:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =80
+                              OnSelect: =Set(varFaultDetail, "Operator Absent")
+                              Size: =18
+                              Text: ="Operator Absent"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_externaldelay_oa:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="External Delay", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="External Delay", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="External Delay", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =320
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =20
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =20
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_externaldelay_oa:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =200
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "External Delay")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_externaldelay_oa:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =80
+                              OnSelect: =Set(varFaultDetail, "External Delay")
+                              Size: =18
+                              Text: ="External Delay"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_waitingapproval_oa:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Waiting on Approval", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Waiting on Approval", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Waiting on Approval", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =320
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =20
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =20
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_waitingapproval_oa:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =200
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='9' y1='15' x2='15' y2='15'/><line x1='12' y1='12' x2='12' y2='18'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Waiting on Approval")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_waitingapproval_oa:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =80
+                              OnSelect: =Set(varFaultDetail, "Waiting on Approval")
+                              Size: =18
+                              Text: ="Waiting on Approval"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_note_oa:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =105
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  PaddingBottom: =6
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =6
+                  Width: =Parent.Width
+                Children:
+                  - lbl_note_key_oa:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(120, 120, 120, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =20
+                        Size: =11
+                        Text: ="NOTES (optional)"
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - txt_note_oa:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(60, 60, 60, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(36, 36, 36, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =67
+                        HintText: ="Add details about the fault..."
+                        HoverBorderColor: =RGBA(200, 140, 0, 1)
+                        Mode: =TextMode.MultiLine
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_actions_oa_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =84
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =10
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_cancel_oa:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(22, 75, 80, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =Set(varFaultDetail, "") ;FaultOperatorAbsence.OnCancelPressed()
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =16
+                        Text: ="CANCEL"
+                  - btn_confirm_oa_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(varFaultDetail), DisplayMode.Disabled, DisplayMode.Edit)
+                        Fill: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                        OnSelect: =FaultOperatorAbsence.OnConfirmPressed()
+                        PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                        Size: =16
+                        Text: ="LOG OPERATOR ABSENCE"

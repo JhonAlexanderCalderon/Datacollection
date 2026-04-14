@@ -1,0 +1,84 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+App:
+  Properties:
+    Formulas: |-
+      =MainBackground = RGBA(31, 31, 31, 1);
+      TextPrimary = RGBA(255, 255, 255, 1);
+      TextSecondary = RGBA(204, 204, 204, 1);
+      GrayButton = RGBA(189, 195, 199, 1);
+      BorderGray = RGBA(234, 234, 234, 1);  //not used
+      ButtonPrimary = RGBA(52, 152, 219, 1); //not used
+      ButtonText = RGBA(255, 255, 255, 1);  //not used
+      RedButton     = RGBA(243, 89, 70, 1);      // Stop Process, Emergency Stop
+      BlueButton    = RGBA(83, 180, 204, 1);     // Temperature, Pressure, Material Feed
+      YellowButton  = RGBA(248, 194, 46, 1);     // Pause, Maintenance
+      GreenButton   = RGBA(44, 185, 149, 1);     // Start Process, Quality Check
+      PurpleButton  = RGBA(176, 133, 204, 1);
+      DarkBlue      = RGBA(83, 180, 204, 0.47);
+      DarkGreen     = RGBA(44, 185, 149, 0.71);
+    OnStart: |-
+      =// ── 1. PRODUCT PARAMETERS ─────────────────────────────────────
+      ClearCollect(
+          colProducts,
+          'Product Parameters (Filling Line)'
+      );
+
+      // ── 2. WORK ORDERS (solo los pendientes/en curso) ─────────────
+      ClearCollect(
+          colWorkOrders,
+          Filter('Work Orders', Status = "Scheduled" || Status = "In Progress")
+      );
+      Notify("Registros cargados: " & CountRows(colWorkOrders), NotificationType.Information)
+      ;
+      // ── 3. STAFF ──────────────────────────────────────────────────
+      ClearCollect(
+          colStaff,
+          Staff
+      );
+
+      // ── 4. SESION ACTIVA (recuperar si habia algo en progreso) ────
+      Set(varActiveSession,
+          LookUp('Active Sessions', Status.Value = "In Progress")
+      );
+
+      // ── 5. VARIABLES GLOBALES INICIALES ───────────────────────────
+      Set(varJobID,        "");
+      Set(varNumpad,       "");
+      Set(varUnitsTotal,   0);
+      Set(varRejectsTotal, 0);
+      Set(varWeighInput,   "");
+      Set(varUnitsInput,   "");
+      Set(varRejectsInput, "");
+      Set(varFailureCategory, "");
+      Set(varFaultDetail,  "");
+      Set(varLineStopped,  false);
+      Set(varLineStopTime, Now());
+      Set(varTotalDowntime, 0);
+      Set(varSetupTime,    "");
+
+      // ── 6. SI HAY SESION EN PROGRESO → RECUPERAR ESTADO ──────────
+      If(
+          !IsBlank(varActiveSession),
+          Set(varJobID,        varActiveSession.JobOrder);
+          Set(varUnitsTotal,   varActiveSession.UnitsProduced);
+          Set(varRejectsTotal, varActiveSession.Rejects);
+          Set(varTotalDowntime, varActiveSession.TotalDowntime_min)
+      );
+
+      ClearCollect(colActiveSessions,
+          Filter('Active Sessions',
+              Status.Value = "In Progress" || Status.Value = "Paused"
+          )
+      );
+
+      Set(varSupervisorName, "");
+      Set(varPinInputText, "")
+    StartScreen: =Welcome
+    Theme: =PowerAppsTheme

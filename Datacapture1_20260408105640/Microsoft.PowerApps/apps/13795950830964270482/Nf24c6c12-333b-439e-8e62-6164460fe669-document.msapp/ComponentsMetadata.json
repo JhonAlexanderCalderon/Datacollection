@@ -1,0 +1,130 @@
+{
+  "Components": [
+    {
+      "Name": "WorkOrderScreen1",
+      "TemplateName": "6cc40160d6e942cc8e00d5e5561572c8",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "numpad",
+      "TemplateName": "06178cede8fa4fd9935747ffb5457922",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "ProductionStart",
+      "TemplateName": "db10acf614fc466b87d826298e7711e8",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "WorkOrderScreen2",
+      "TemplateName": "95598b9ed6554fcb9a7fde89adce7d04",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "SetupInProgress",
+      "TemplateName": "c29212463e534b75b30a8ab81391ae24",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "LogWeighSample",
+      "TemplateName": "d3ff9f2661f145b99982c42b26d4bdff",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "UpdateUnits",
+      "TemplateName": "1a74baea124b439daadb6a36b98aec19",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "UpdateRejects",
+      "TemplateName": "74f736eead1f49c0a321a3940bc6f6cd",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "LogFailure",
+      "TemplateName": "6afc3671a0ee412ab9079a17fda5a3f9",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "FaultQualityIssue",
+      "TemplateName": "2c248d47961b42e0b30fde19df52ec86",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "FaultMachineBreakdown",
+      "TemplateName": "046e298fe13c4b23b8397afd6d8ec867",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "FaultMaterialShortage",
+      "TemplateName": "88c341e522104a7b9fca2fd240cfdd2e",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "FaultOperatorAbsence",
+      "TemplateName": "44bc2564e3ae4ca1907da46d6eb14dc4",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "FaultChangeover",
+      "TemplateName": "8a3cb8446abf4148b7c305fa7d680510",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "EndProductionConfirm",
+      "TemplateName": "e4e2e803750a43caa795dd05b3c2a963",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "ProductionSummary",
+      "TemplateName": "d308693befaf49f2a73d4ed35f09153e",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "LiveProduction",
+      "TemplateName": "a5f2128cc93c4c01b1b1f1fb77813f94",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    },
+    {
+      "Name": "OperatorAssignment",
+      "TemplateName": "81dc6f3e464c46ada399d5eeaa88b6ba",
+      "Description": "",
+      "AllowCustomization": true,
+      "AllowAccessToGlobals": false
+    }
+  ]
+}

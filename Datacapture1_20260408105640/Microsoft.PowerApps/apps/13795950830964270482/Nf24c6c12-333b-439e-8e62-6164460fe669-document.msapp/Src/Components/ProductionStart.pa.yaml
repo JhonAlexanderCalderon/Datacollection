@@ -1,0 +1,784 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  ProductionStart:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      LineName:
+        PropertyKind: Input
+        DisplayName: LineName
+        Description: Nombre de la linea
+        DataType: Text
+        Default: ="Cold Fill Line"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Numero de la linea
+        DataType: Text
+        Default: ="Line 2"
+      OnBackPressed:
+        PropertyKind: Event
+        DisplayName: OnBackPressed
+        Description: Se dispara al presionar BACK
+        ReturnType: Boolean
+        Default: =false
+      OnLiveProductionPressed:
+        PropertyKind: Event
+        DisplayName: OnLiveProductionPressed
+        Description: Se dispara al confirmar inicio de live production con PIN valido
+        ReturnType: Boolean
+        Default: =false
+      OnSetupStartPressed:
+        PropertyKind: Event
+        DisplayName: OnSetupStartPressed
+        Description: Se dispara al iniciar setup - registrar timestamp
+        ReturnType: Boolean
+        Default: =false
+      OperatorName:
+        PropertyKind: Input
+        DisplayName: OperatorName
+        Description: Nombre del operario actual
+        DataType: Text
+        Default: =""
+      SetupTimestamp:
+        PropertyKind: Input
+        DisplayName: SetupTimestamp
+        Description: Timestamp de inicio de setup - vacio si no iniciado
+        DataType: Text
+        Default: =""
+      StaffIds:
+        PropertyKind: Input
+        DisplayName: StaffIds
+        Description: 'Lista de IDs '
+        DataType: Text
+        Default: ="Text"
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_ps:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(20, 50, 90, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_ps:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =ProductionStart.LineNumber & " — " & ProductionStart.LineName
+                  - lbl_stage_ps:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(160, 190, 230, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="PRODUCTION START"
+                        Width: =200
+            - cont_status_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(50, 35, 0, 1), RGBA(18, 70, 50, 1))
+                  FillPortions: =0
+                  Height: =69
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_status_icon_ps:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(200, 140, 0, 1), RGBA(46, 182, 143, 1))
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =69
+                        Size: =22
+                        Text: ="●"
+                        Width: =30
+                  - lbl_status_text_ps:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(245, 190, 70, 1), RGBA(100, 220, 170, 1))
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =69
+                        Size: =15
+                        Text: =If(IsBlank(ProductionStart.SetupTimestamp), "AWAITING SETUP START — No active setup recorded for this job", "SETUP IN PROGRESS — Started at " & ProductionStart.SetupTimestamp)
+            - cont_info_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =110
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_info_job_ps:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =110
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_job_key_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="JOB ORDER"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_job_val_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(83, 178, 200, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =68
+                              Size: =26
+                              Text: =ProductionStart.JobOrder
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_info_operator_ps:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =110
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_operator_key_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="OPERATOR"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - setupOperator:
+                            Control: Classic/DropDown@2.3.1
+                            Properties:
+                              BorderColor: =RGBA(55, 55, 55, 1)
+                              BorderThickness: =1
+                              ChevronBackground: =RGBA(36, 36, 36, 1)
+                              ChevronFill: =RGBA(120, 120, 120, 1)
+                              Color: =RGBA(230, 230, 230, 1)
+                              Fill: =RGBA(28, 28, 28, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =68
+                              HoverBorderColor: =RGBA(83, 178, 200, 1)
+                              HoverFill: =RGBA(40, 40, 40, 1)
+                              Items: =Split(ProductionStart.OperatorName, ",")
+                              Items.Value: =Value
+                              PressedBorderColor: =RGBA(83, 178, 200, 1)
+                              PressedFill: =RGBA(22, 22, 22, 1)
+                              SelectionColor: =RGBA(255, 255, 255, 1)
+                              SelectionFill: =RGBA(83, 178, 200, 0.3)
+                              Size: =16
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_divider_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(45, 45, 45, 1)
+                  FillPortions: =0
+                  Height: =2
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  Width: =Parent.Width
+            - cont_action_setup_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =130
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - cont_setup_info_ps:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =114
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_setup_info_key_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="SETUP START"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_setup_info_val_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(100, 100, 100, 1), RGBA(245, 190, 70, 1))
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =72
+                              Size: =18
+                              Text: =If(IsBlank(ProductionStart.SetupTimestamp), "Not started", ProductionStart.SetupTimestamp)
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - btn_start_setup_ps:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(ProductionStart.SetupTimestamp), DisplayMode.Edit, DisplayMode.Disabled)
+                        Fill: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(200, 140, 0, 1), RGBA(60, 60, 60, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =114
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                        OnSelect: =ProductionStart.OnSetupStartPressed()
+                        PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                        Size: =20
+                        Text: =If(IsBlank(ProductionStart.SetupTimestamp), "START SETUP", "SETUP STARTED")
+            - cont_action_live_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =130
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - cont_pin_info_ps:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =114
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_pin_key_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(80, 80, 80, 1), RGBA(120, 120, 120, 1))
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="SUPERVISOR AUTHORISATION"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_pin_status_ps:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(60, 60, 60, 1), If(IsBlank(varPinCode), RGBA(160, 160, 160, 1), RGBA(46, 182, 143, 1)))
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =46
+                              Size: =16
+                              Text: |-
+                                =If(
+                                    IsBlank(ProductionStart.SetupTimestamp),
+                                    "Complete setup first",
+                                    If(
+                                        IsBlank(varPinCode),
+                                        "Awaiting supervisor scan...",
+                                        "✓ " & LookUp(
+                                            ForAll(
+                                                Split(ProductionStart.StaffIds, ","),
+                                                {code: First(Split(Value, "|")).Value,
+                                                 name: Last(Split(Value, "|")).Value}
+                                            ),
+                                            code = varPinCode
+                                        ).name
+                                    )
+                                )
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - btn_scan_pin_ps:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisplayMode: =If(IsBlank(ProductionStart.SetupTimestamp), DisplayMode.Disabled, DisplayMode.Edit)
+                              Fill: =If(IsBlank(ProductionStart.SetupTimestamp), RGBA(50, 50, 50, 1), If(IsBlank(varPinCode), RGBA(20, 50, 90, 1), RGBA(30, 80, 50, 1)))
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =34
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(20, 50, 90, 1), -20%)
+                              OnSelect: |-
+                                =Set(varPinCode, "");
+                                Set(varMatchedStaff, Blank());
+                                Set(varPinError, "");
+                                Set(varPinInputText, "");
+                                Set(varShowPinOverlay, true)
+                              PressedFill: =ColorFade(RGBA(20, 50, 90, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =12
+                              Text: =If(IsBlank(varPinCode), "SCAN / ENTER CODE", "RE-SCAN")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - btn_start_live_ps:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(ProductionStart.SetupTimestamp) || IsBlank(varPinCode), DisplayMode.Disabled, DisplayMode.Edit)
+                        Fill: =If(IsBlank(ProductionStart.SetupTimestamp) || IsBlank(varPinCode), RGBA(30, 70, 40, 1), RGBA(46, 182, 143, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =114
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(46, 182, 143, 1), -20%)
+                        OnSelect: =ProductionStart.OnLiveProductionPressed()
+                        PressedFill: =ColorFade(RGBA(46, 182, 143, 1), -35%)
+                        Size: =18
+                        Text: ="START LIVE PRODUCTION"
+            - cont_actions_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =90
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =12
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_back_ps:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(20, 50, 90, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(20, 50, 90, 1), -20%)
+                        OnSelect: =ProductionStart.OnBackPressed()
+                        PressedFill: =ColorFade(RGBA(20, 50, 90, 1), -35%)
+                        Size: =18
+                        Text: ="BACK"
+            - cont_pin_overlay_ps_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(0, 0, 0, 0.85)
+                  Height: =Parent.Height
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =20
+                  PaddingBottom: =40
+                  PaddingLeft: =80
+                  PaddingRight: =80
+                  PaddingTop: =40
+                  Visible: =
+                  Width: =Parent.Width
+                Children:
+                  - lbl_overlay_title_ps_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =60
+                        Size: =24
+                        Text: ="SUPERVISOR AUTHORISATION REQUIRED"
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - lbl_overlay_sub_ps_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =RGBA(160, 190, 230, 1)
+                        Font: =Font.'Open Sans'
+                        Size: =14
+                        Text: ="Scan supervisor RFID Bracelet"
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_pin_input_overlay_ps_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =120
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        PaddingBottom: =16
+                        PaddingLeft: =32
+                        PaddingRight: =32
+                        PaddingTop: =16
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                      Children:
+                        - txt_pin_overlay_ps_1:
+                            Control: Classic/TextInput@2.3.2
+                            Properties:
+                              BorderColor: =RGBA(83, 178, 200, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(26, 26, 26, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =70
+                              HintText: ="Scan RFID or type code here..."
+                              HoverBorderColor: =RGBA(83, 178, 200, 1)
+                              Mode: =TextMode.Password
+                              OnChange: =If(Len(Self.Text) >= 4, Set(varPinCode, Self.Text); Set(varShowPinOverlay, false))
+                              RadiusBottomLeft: =10
+                              RadiusBottomRight: =10
+                              RadiusTopLeft: =10
+                              RadiusTopRight: =10
+                              Size: =22
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - btn_overlay_cancel_ps_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =60
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =Set(varShowPinOverlay, false); Set(varPinCode, "")
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =16
+                        Text: ="CANCEL"
+                        Width: =300
+      - cont_pin_overlay_ps:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(0, 0, 0, 0.95)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =20
+            PaddingBottom: =40
+            PaddingLeft: =80
+            PaddingRight: =80
+            PaddingTop: =40
+            Visible: =varShowPinOverlay
+            Width: =Parent.Width
+          Children:
+            - lbl_overlay_title_ps:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  Height: =60
+                  Size: =24
+                  Text: ="SUPERVISOR AUTHORISATION REQUIRED"
+                  Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - lbl_overlay_sub_ps:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  Color: =RGBA(160, 190, 230, 1)
+                  Font: =Font.'Open Sans'
+                  Size: =14
+                  Text: ="Scan supervisor RFID Bracelet"
+                  Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_pin_input_overlay_ps:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.Center
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(36, 36, 36, 1)
+                  Height: =120
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  PaddingBottom: =16
+                  PaddingLeft: =32
+                  PaddingRight: =32
+                  PaddingTop: =16
+                  RadiusBottomLeft: =12
+                  RadiusBottomRight: =12
+                  RadiusTopLeft: =12
+                  RadiusTopRight: =12
+                  Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                Children:
+                  - txt_pin_overlay_ps:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 0, 0, 0)
+                        Default: =varPinInputText
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =70
+                        HintText: ="Scan RFID or type code here..."
+                        HoverBorderColor: =RGBA(83, 178, 200, 1)
+                        Mode: =TextMode.Password
+                        OnChange: =Set(varPinError, "")
+                        OnSelect: =""
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                        Size: =22
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - Label2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(46, 182, 143, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =50
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =40
+                        Text: |-
+                          =If(
+                                    IsBlank(varPinCode),
+                                    "",
+                                    "✓ " & LookUp(
+                                        ForAll(
+                                            Split(ProductionStart.StaffIds, ","),
+                                            {code: First(Split(Value, "|")).Value,
+                                             name: Last(Split(Value, "|")).Value}
+                                        ),
+                                        code = varPinCode
+                                    ).name
+                                )
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        X: =40
+                        Y: =40
+            - btn_overlay_cancel_ps:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  Fill: =RGBA(22, 75, 80, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  Height: =60
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                  OnSelect: =Set(varShowPinOverlay, false); Set(varPinCode, "")
+                  PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                  Size: =16
+                  Text: ="CANCEL"
+                  Width: =300
+            - Timer1:
+                Control: Timer@2.1.0
+                Properties:
+                  AutoStart: =varShowPinOverlay
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+                  DisabledColor: =ColorFade(Self.Fill, 90%)
+                  DisabledFill: =ColorFade(Self.Fill, 70%)
+                  Duration: =100
+                  Fill: =RGBA(56, 96, 178, 1)
+                  Font: =Font.'Open Sans'
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnTimerEnd: |-
+                    =If(
+                        Len(txt_pin_overlay_ps.Text) = 10,
+                        Set(varMatchedStaff,
+                            LookUp(
+                                ForAll(Split(ProductionStart.StaffIds, ","),
+                                    {code: First(Split(Value, "|")).Value,
+                                     name: Last(Split(Value, "|")).Value}
+                                ),
+                                code = txt_pin_overlay_ps.Text
+                            )
+                        );
+                    If(
+                        !IsBlank(varMatchedStaff),
+                        Set(varPinCode, txt_pin_overlay_ps.Text);
+                        Set(varSupervisorName, varMatchedStaff.name);
+                        Set(varPinError, ""),
+                        If(Len(txt_pin_overlay_ps.Text) > 0,
+                            Set(varPinError, "⚠ Code not recognised"))
+                    )
+                    )
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  Repeat: =true
+                  Visible: =false
+            - Button1:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  DisplayMode: =If(IsBlank(varPinCode), DisplayMode.Disabled, DisplayMode.Edit)
+                  Fill: =If(IsBlank(varPinCode), RGBA(30,70,40,1), RGBA(46,182,143,1))
+                  Font: =Font.'Open Sans'
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: =Set(varShowPinOverlay, false)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  Text: ="✓ CONFIRM"
+      - timer_pin_focus_ps:
+          Control: Timer@2.1.0
+          Properties:
+            AutoStart: =varShowPinOverlay
+            Duration: =500
+            OnTimerEnd: |-
+              =Reset(txt_pin_overlay_ps);
+                           SetFocus(txt_pin_overlay_ps)
+            Visible: =false

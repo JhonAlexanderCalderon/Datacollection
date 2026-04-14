@@ -1,0 +1,64 @@
+{
+  "Resources": [
+    {
+      "Name": "SampleImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/image/images/SampleImage.svg",
+      "Path": "/ctrllib/image/images/SampleImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/image/images/SampleImage.svg"
+    },
+    {
+      "Name": "concept (1) (1)",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "419a6ba4-6748-41eb-a243-da6993371c4c.png",
+      "Path": "Assets\\Images\\419a6ba4-6748-41eb-a243-da6993371c4c.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil101seau.blob.core.windows.net/152b8c37-3952-4e6a-8353-7647e6c8c212-1/resource/NDE5YTZiYTQtNjc0OC00MWViLWEyNDMtZGE2OTkzMzcxYzRj.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-04-02T21%3A46%3A12Z&ske=2026-04-03T22%3A01%3A12Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-04-03T22%3A01%3A12Z&sr=b&sp=r&sig=Tmx0Lra%2B9ew8YAB0M%2FHROgEDq%2BbYgPKCNmRJDLr7XS4%3D"
+    },
+    {
+      "Name": "concept (1) (1) (1)",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "61072bcd-2dd2-435d-a3f7-d45b769bfd98.png",
+      "Path": "Assets\\Images\\61072bcd-2dd2-435d-a3f7-d45b769bfd98.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil101seau.blob.core.windows.net/152b8c37-3952-4e6a-8353-7647e6c8c212-1/resource/NjEwNzJiY2QtMmRkMi00MzVkLWEzZjctZDQ1Yjc2OWJmZDk4.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-04-02T21%3A46%3A12Z&ske=2026-04-03T22%3A01%3A12Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-04-03T22%3A01%3A12Z&sr=b&sp=r&sig=eO84VKD8YgSBKrMeceb6oodlfBD21%2Bao3jowHpJ%2F9sg%3D"
+    },
+    {
+      "Name": "loading",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "cbf3d8e3-d57f-4544-9422-89262349dcb1.gif",
+      "Path": "Assets\\Images\\cbf3d8e3-d57f-4544-9422-89262349dcb1.gif",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil101seau.blob.core.windows.net/152b8c37-3952-4e6a-8353-7647e6c8c212-1/resource/Y2JmM2Q4ZTMtZDU3Zi00NTQ0LTk0MjItODkyNjIzNDlkY2Ix.gif?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-04-02T21%3A46%3A12Z&ske=2026-04-03T22%3A01%3A12Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-04-03T22%3A01%3A12Z&sr=b&sp=r&sig=%2FsclYfWMLc8tE9lwpE8L7WkoKufAV3V7JjEXxp53CcM%3D"
+    },
+    {
+      "Name": "beaker",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "00476dad-c6a5-4392-9afd-9a210e7e9ae0.gif",
+      "Path": "Assets\\Images\\00476dad-c6a5-4392-9afd-9a210e7e9ae0.gif",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil101seau.blob.core.windows.net/152b8c37-3952-4e6a-8353-7647e6c8c212-1/resource/MDA0NzZkYWQtYzZhNS00MzkyLTlhZmQtOWEyMTBlN2U5YWUw.gif?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-04-02T21%3A46%3A12Z&ske=2026-04-03T22%3A01%3A12Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-04-03T22%3A01%3A12Z&sr=b&sp=r&sig=vNJcuGRFm0DPpRL8JxHvIOn38N7HpUj%2FpnD6zdE70hE%3D"
+    }
+  ]
+}

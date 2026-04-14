@@ -1,0 +1,605 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  WorkOrderScreen1:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      AdditionalInfo:
+        PropertyKind: Input
+        DisplayName: AdditionalInfo
+        Description: Informacion adicional
+        DataType: Text
+        Default: ="Batch and Expiry to be crimped into tube seal - format C01 EXP01/11"
+      Batch:
+        PropertyKind: Input
+        DisplayName: Batch
+        Description: Codigo de batch
+        DataType: Text
+        Default: ="C1349 / C02"
+      Expiry:
+        PropertyKind: Input
+        DisplayName: Expiry
+        Description: Estado de vencimiento
+        DataType: Text
+        Default: ="REQUIRED"
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      NetFillWeight:
+        PropertyKind: Input
+        DisplayName: NetFillWeight
+        Description: Peso neto de llenado
+        DataType: Text
+        Default: ="115g - 118g"
+      NumberOfPallets:
+        PropertyKind: Input
+        DisplayName: NumberOfPallets
+        Description: Numero de pallets requeridos
+        DataType: Text
+        Default: ="4"
+      OnCancelPressed:
+        PropertyKind: Event
+        DisplayName: OnCancelPressed
+        Description: Se dispara al presionar CANCEL - conectar con Navigate en la pantalla
+        ReturnType: Boolean
+        Default: =false
+      OnNextPressed:
+        PropertyKind: Event
+        DisplayName: OnNextPressed
+        Description: Se dispara al presionar NEXT - conectar con Navigate en la pantalla
+        ReturnType: Boolean
+        Default: =false
+      PalletQty:
+        PropertyKind: Input
+        DisplayName: PalletQty
+        Description: Cantidad de pallets
+        DataType: Text
+        Default: ="24"
+      ProductName:
+        PropertyKind: Input
+        DisplayName: ProductName
+        Description: Nombre del producto
+        DataType: Text
+        Default: ="No Nasties Hair Paste"
+      QtyRequired:
+        PropertyKind: Input
+        DisplayName: QtyRequired
+        Description: Cantidad requerida
+        DataType: Text
+        Default: ="5000 Units"
+      Srt:
+        PropertyKind: Input
+        DisplayName: Srt
+        Description: Informacion SRT
+        DataType: Text
+        Default: ="Yes - 3XGE0002"
+      Tube:
+        PropertyKind: Input
+        DisplayName: Tube
+        Description: Codigo de tubo
+        DataType: Text
+        Default: ="3TGE0003 - 125ml Tube"
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_1:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(22, 75, 80, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =WorkOrderScreen1.ProductName & " — " & WorkOrderScreen1.JobOrder
+                  - lbl_page:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: ="1 / 2"
+                        Width: =40
+            - cont_primary_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  Height: =158
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_batch_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =158
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_batch_key_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =36
+                              Size: =12
+                              Text: ="BATCH"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_batch_val_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(83, 178, 200, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =100
+                              Size: =34
+                              Text: =WorkOrderScreen1.Batch
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_qty_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =158
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_qty_key_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =36
+                              Size: =12
+                              Text: ="QTY REQUIRED"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_qty_val_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(83, 178, 200, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =100
+                              Size: =34
+                              Text: =WorkOrderScreen1.QtyRequired
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_row2:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =82
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_tube_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =82
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =8
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =8
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_tube_key_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="TUBE"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_tube_val_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(230, 230, 230, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =44
+                              Size: =19
+                              Text: =WorkOrderScreen1.Tube
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_netfill_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =82
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =8
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =8
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_netfill_key_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="NET FILL WEIGHT"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_netfill_val_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(83, 178, 200, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =44
+                              Size: =19
+                              Text: =WorkOrderScreen1.NetFillWeight
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_row3:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =75
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_expiry_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(30, 30, 30, 1)
+                        Height: =75
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =8
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =8
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - lbl_expiry_key_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(110, 110, 110, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =18
+                              Size: =10
+                              Text: ="EXPIRY"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_expiry_val_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(210, 210, 210, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =41
+                              Size: =17
+                              Text: =WorkOrderScreen1.Expiry
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_palletqty:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(30, 30, 30, 1)
+                        Height: =75
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =8
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =8
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - lbl_palletqty_key:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(110, 110, 110, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =18
+                              Size: =10
+                              Text: ="PALLET QTY"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_palletqty_val:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(210, 210, 210, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =41
+                              Size: =17
+                              Text: =WorkOrderScreen1.PalletQty
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_row4:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =75
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_srt_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(30, 30, 30, 1)
+                        Height: =75
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =8
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =8
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - lbl_srt_key_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(110, 110, 110, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =18
+                              Size: =10
+                              Text: ="SRT"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_srt_val_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(210, 210, 210, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =41
+                              Size: =17
+                              Text: =WorkOrderScreen1.Srt
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_numpallets:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(30, 30, 30, 1)
+                        Height: =75
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =8
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =8
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                      Children:
+                        - lbl_numpallets_key:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(110, 110, 110, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =18
+                              Size: =10
+                              Text: ="NUMBER OF PALLETS"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_numpallets_val:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(210, 210, 210, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =41
+                              Size: =17
+                              Text: =WorkOrderScreen1.NumberOfPallets
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_note_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(48, 32, 8, 1)
+                  Height: =51
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =12
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - lbl_note_key_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =RGBA(200, 140, 40, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =51
+                        Size: =8
+                        Text: ="NOTE"
+                        Width: =44
+                  - lbl_note_val_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(245, 190, 70, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =51
+                        Text: =WorkOrderScreen1.AdditionalInfo
+            - cont_actions_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =90
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =12
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_cancel_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(22, 75, 80, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =WorkOrderScreen1.OnCancelPressed()
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =18
+                        Text: ="CANCEL"
+                  - btn_next:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(46, 182, 143, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(46, 182, 143, 1)
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(46, 182, 143, 1), -20%)
+                        OnSelect: =WorkOrderScreen1.OnNextPressed()
+                        PressedFill: =ColorFade(RGBA(46, 182, 143, 1), -35%)
+                        Size: =18
+                        Text: ="NEXT"

@@ -1,0 +1,48 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+EditorState:
+  ScreensOrder:
+    - Welcome
+    - Numbers
+    - WorkOrder1
+    - WorkOrder2
+    - OpAssignment
+    - Production_Start
+    - Setup_in_Progress
+    - LiveProd
+    - Update_Units
+    - Update_Rejects
+    - Weigh_sample
+    - Failure_Type
+    - Machine_Breakdown
+    - Fault_QA
+    - Material_Short
+    - Operator_Absense
+    - Changeover
+    - confirmation_END
+    - Production_Summary
+  ComponentDefinitionsOrder:
+    - numpad
+    - WorkOrderScreen1
+    - WorkOrderScreen2
+    - OperatorAssignment
+    - ProductionStart
+    - SetupInProgress
+    - LiveProduction
+    - UpdateUnits
+    - UpdateRejects
+    - LogFailure
+    - LogWeighSample
+    - FaultQualityIssue
+    - FaultMachineBreakdown
+    - FaultMaterialShortage
+    - FaultOperatorAbsence
+    - FaultChangeover
+    - EndProductionConfirm
+    - ProductionSummary

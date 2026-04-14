@@ -1,0 +1,49 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  confirmation_END:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - EndProductionConfirm_1:
+          Control: CanvasComponent
+          ComponentName: EndProductionConfirm
+          Properties:
+            Height: =614
+            JobOrder: ="2GE0009"
+            LineNumber: ="Line 2"
+            OnCancelPressed: =Navigate(LiveProd, ScreenTransition.None)
+            OnEndJobPressed: |-
+              =Patch('Active Sessions', varActiveSession,
+                                    {Status: {Value: "Paused"},
+                                     LastModified: Text(Now(), "dd/mm/yyyy hh:mm")});
+                                  Set(varActiveSession, Blank());
+                                  Set(varJobID, "");
+                                  Set(varUnitsTotal, 0);
+                                  Set(varRejectsTotal, 0);
+                                  Set(varSetupTime, "");
+                                  Set(varPinCode, "");
+                                  Navigate(Numbers, ScreenTransition.None);
+                                  Navigate(Production_Summary, ScreenTransition.None)
+            OnPauseJobPressed: |-
+              =Patch('Active Sessions', varActiveSession,
+                                    {Status: {Value: "Paused"},
+                                     LastModified: Text(Now(), "dd/mm/yyyy hh:mm")});
+                                  Set(varActiveSession, Blank());
+                                  Set(varJobID, "");
+                                  Set(varUnitsTotal, 0);
+                                  Set(varRejectsTotal, 0);
+                                  Set(varSetupTime, "");
+                                  Set(varPinCode, "");
+                                  Navigate(Numbers, ScreenTransition.None)
+            ProductName: ="No Nasties Hair Paste"
+            ProductionStartTime: ="14:32"
+            Rejects: ="12"
+            UnitsProduced: ="4820"
+            Width: =1024

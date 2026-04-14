@@ -1,0 +1,517 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  UpdateRejects:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      CurrentRejects:
+        PropertyKind: Input
+        DisplayName: CurrentRejects
+        Description: Total actual de unidades rechazadas
+        DataType: Text
+        Default: ="1240"
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Numero de la linea
+        DataType: Text
+        Default: ="Line 2"
+      OnCancelPressed:
+        PropertyKind: Event
+        DisplayName: OnCancelPressed
+        Description: Se dispara al presionar CANCEL
+        ReturnType: Boolean
+        Default: =false
+      OnConfirmPressed:
+        PropertyKind: Event
+        DisplayName: OnConfirmPressed
+        Description: Se dispara al confirmar - usar varRejectsInput para leer el valor
+        ReturnType: Boolean
+        Default: =false
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_uu_1:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_uu_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(22, 75, 80, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_uu_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =UpdateRejects.LineNumber & " — " & UpdateRejects.JobOrder
+                  - lbl_stage_uu_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(160, 210, 210, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="UPDATE REJECTS"
+                        Width: =160
+            - cont_display_uu_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =120
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_current_uu_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =120
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_current_key_uu_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="CURRENT REJECTS"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_current_val_uu_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =78
+                              Size: =38
+                              Text: =UpdateRejects.CurrentRejects
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_new_uu_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(90, 20, 20, 1)
+                        Height: =120
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_new_key_uu_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(255, 160, 160, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="ADD REJECTS"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_new_val_uu_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(255, 255, 255, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =78
+                              Size: =38
+                              Text: =If(IsBlank(varRejectsInput), "0", varRejectsInput)
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_numpad_uu_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =315
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =6
+                  PaddingBottom: =6
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =6
+                  Width: =Parent.Width
+                Children:
+                  - cont_np_row1_uu_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        LayoutMinHeight: =0
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                      Children:
+                        - btn_np1_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "1")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="1"
+                        - btn_np2_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "2")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="2"
+                        - btn_np3_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "3")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="3"
+                  - cont_np_row2_uu_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        LayoutMinHeight: =0
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                      Children:
+                        - btn_np4_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "4")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="4"
+                        - btn_np5_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "5")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="5"
+                        - btn_np6_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "6")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="6"
+                  - cont_np_row3_uu_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        LayoutMinHeight: =0
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                      Children:
+                        - btn_np7_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "7")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="7"
+                        - btn_np8_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "8")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="8"
+                        - btn_np9_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "9")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="9"
+                  - cont_np_row4_uu_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        LayoutMinHeight: =0
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                      Children:
+                        - btn_np_clear_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(80, 80, 80, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(60, 60, 60, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(80, 80, 80, 1)
+                              OnSelect: =Set(varRejectsInput, "")
+                              PressedFill: =RGBA(40, 40, 40, 1)
+                              Size: =18
+                              Text: ="CLEAR"
+                        - btn_np0_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(200, 70, 70, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varRejectsInput, varRejectsInput & "0")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              Size: =28
+                              Text: ="0"
+                        - btn_np_del_uu_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(80, 80, 80, 1)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(60, 60, 60, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(80, 80, 80, 1)
+                              OnSelect: =If(Len(varRejectsInput)>0, Set(varRejectsInput, Left(varRejectsInput, Len(varRejectsInput)-1)))
+                              PressedFill: =RGBA(40, 40, 40, 1)
+                              Size: =18
+                              Text: ="< DEL"
+            - cont_actions_uu_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =114
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =12
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_cancel_uu_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(22, 75, 80, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =Set(varRejectsInput, "") ;UpdateRejects.OnCancelPressed()
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =18
+                        Text: ="CANCEL"
+                  - btn_confirm_uu_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(IsBlank(varRejectsInput), RGBA(30, 70, 40, 1), RGBA(46, 182, 143, 1))
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(varRejectsInput), DisplayMode.Disabled, DisplayMode.Edit)
+                        Fill: =If(IsBlank(varRejectsInput), RGBA(30, 70, 40, 1), RGBA(46, 182, 143, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(46, 182, 143, 1), -20%)
+                        OnSelect: =UpdateRejects.OnConfirmPressed()
+                        PressedFill: =ColorFade(RGBA(46, 182, 143, 1), -35%)
+                        Size: =18
+                        Text: ="CONFIRM REJECTS"

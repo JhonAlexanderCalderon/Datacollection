@@ -1,0 +1,34 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Production_Summary:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - ProductionSummary_1:
+          Control: CanvasComponent
+          ComponentName: ProductionSummary
+          Properties:
+            Batch: ="C1349 / C02"
+            FinishedFillWeight: ="116.8g"
+            Height: =614
+            JobOrder: ="2GE0009"
+            LineNumber: ="Line 2"
+            NetFillWeight: ="115g - 118g"
+            OnCloseJobPressed: =false
+            ProductName: ="No Nasties Hair Paste"
+            ProductionEndTime: ="21:15"
+            ProductionStartTime: ="14:32"
+            QtyRequired: =5000
+            Rejects: =12
+            RetentionSamples: ="1 start / 1 mid / 1 end"
+            TotalDowntime: ="0h 28m"
+            TotalDuration: ="6h 43m"
+            UnitsProduced: =4820
+            Width: =1024

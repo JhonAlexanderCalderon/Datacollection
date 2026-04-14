@@ -1,0 +1,408 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  FaultChangeover:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Numero de la linea
+        DataType: Text
+        Default: ="Line 2"
+      OnCancelPressed:
+        PropertyKind: Event
+        DisplayName: OnCancelPressed
+        Description: Se dispara al presionar CANCEL - volver a LogFailure
+        ReturnType: Boolean
+        Default: =false
+      OnConfirmPressed:
+        PropertyKind: Event
+        DisplayName: OnConfirmPressed
+        Description: Se dispara al confirmar - leer varFaultDetail y varFaultNote
+        ReturnType: Boolean
+        Default: =false
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_co:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_co:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(200, 140, 0, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_co:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =FaultChangeover.LineNumber & " — " & FaultChangeover.JobOrder
+                  - lbl_stage_co:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(255, 240, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="⚠ CHANGEOVER"
+                        Width: =180
+            - cont_instruct_co:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(36, 36, 36, 1)
+                  FillPortions: =0
+                  Height: =34
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_instruct_co:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(180, 180, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =34
+                        Size: =12
+                        Text: ="SELECT FAULT TYPE"
+            - cont_row1_co:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =170
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_productco_co:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Product Changeover", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Product Changeover", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Product Changeover", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_productco_co:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='17 1 21 5 17 9'/><path d='M3 11V9a4 4 0 0 1 4-4h14'/><polyline points='7 23 3 19 7 15'/><path d='M21 13v2a4 4 0 0 1-4 4H3'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Product Changeover")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_productco_co:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Product Changeover")
+                              Size: =15
+                              Text: ="Product Changeover"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_labelco_co:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Label Changeover", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Label Changeover", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Label Changeover", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_labelco_co:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z'/><line x1='7' y1='7' x2='7.01' y2='7'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Label Changeover")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_labelco_co:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Label Changeover")
+                              Size: =15
+                              Text: ="Label Changeover"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_row2_co:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =170
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_ibcco_co:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="IBC Changeover", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="IBC Changeover", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="IBC Changeover", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_ibcco_co:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/><line x1='12' y1='22' x2='12' y2='12'/><path d='m3.3 7 8.7 5 8.7-5'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "IBC Changeover")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_ibcco_co:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "IBC Changeover")
+                              Size: =15
+                              Text: ="IBC Changeover"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_linesetup_co:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Line Setup", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Line Setup", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Line Setup", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_linesetup_co:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><line x1='8' y1='6' x2='21' y2='6'/><line x1='8' y1='12' x2='21' y2='12'/><line x1='8' y1='18' x2='21' y2='18'/><line x1='3' y1='6' x2='3.01' y2='6'/><line x1='3' y1='12' x2='3.01' y2='12'/><line x1='3' y1='18' x2='3.01' y2='18'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Line Setup")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_linesetup_co:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Line Setup")
+                              Size: =15
+                              Text: ="Line Setup"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_note_co:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =99
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  PaddingBottom: =6
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =6
+                  Width: =Parent.Width
+                Children:
+                  - lbl_note_key_co:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(120, 120, 120, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =20
+                        Size: =11
+                        Text: ="NOTES (optional)"
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - txt_note_co:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(60, 60, 60, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(36, 36, 36, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =61
+                        HintText: ="Add details about the fault..."
+                        HoverBorderColor: =RGBA(200, 140, 0, 1)
+                        Mode: =TextMode.MultiLine
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_actions_co:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_cancel_co:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(22, 75, 80, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =Set(varFaultDetail, "") ;FaultChangeover.OnCancelPressed()
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =16
+                        Text: ="CANCEL"
+                  - btn_confirm_co:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(varFaultDetail), DisplayMode.Disabled, DisplayMode.Edit)
+                        Fill: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                        OnSelect: =FaultChangeover.OnConfirmPressed()
+                        PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                        Size: =16
+                        Text: ="LOG CHANGEOVER"

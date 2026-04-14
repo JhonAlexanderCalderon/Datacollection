@@ -1,0 +1,579 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  LiveProduction:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Job order number
+        DataType: Text
+        Default: ="2GE0009"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Production line number
+        DataType: Text
+        Default: ="Line 2"
+      LineStopped:
+        PropertyKind: Input
+        DisplayName: LineStopped
+        Description: True when line is stopped due to a failure - controls RESUME button state
+        DataType: Boolean
+        Default: =false
+      OnEndProductionPressed:
+        PropertyKind: Event
+        DisplayName: OnEndProductionPressed
+        Description: Fires when END PRODUCTION is pressed
+        ReturnType: Boolean
+        Default: =false
+      OnLogFailurePressed:
+        PropertyKind: Event
+        DisplayName: OnLogFailurePressed
+        Description: Fires when LOG FAILURE is pressed - also records line stop timestamp
+        ReturnType: Boolean
+        Default: =false
+      OnLogWeighSamplePressed:
+        PropertyKind: Event
+        DisplayName: OnLogWeighSamplePressed
+        Description: Fires when LOG WEIGH SAMPLE is pressed
+        ReturnType: Boolean
+        Default: =false
+      OnResumeLinePressed:
+        PropertyKind: Event
+        DisplayName: OnResumeLinePressed
+        Description: Fires when RESUME LINE is pressed - records resume timestamp to calculate downtime
+        ReturnType: Boolean
+        Default: =false
+      OnUpdateRejectsPressed:
+        PropertyKind: Event
+        DisplayName: OnUpdateRejectsPressed
+        Description: Fires when UPDATE REJECTS is pressed
+        ReturnType: Boolean
+        Default: =false
+      OnUpdateUnitsPressed:
+        PropertyKind: Event
+        DisplayName: OnUpdateUnitsPressed
+        Description: Fires when UPDATE UNITS is pressed
+        ReturnType: Boolean
+        Default: =false
+      OnViewJobInfoPressed:
+        PropertyKind: Event
+        DisplayName: OnViewJobInfoPressed
+        Description: Fires when VIEW JOB INFO is pressed
+        ReturnType: Boolean
+        Default: =false
+      OnViewOperatorsPressed:
+        PropertyKind: Event
+        DisplayName: OnViewOperatorsPressed
+        Description: Fires when VIEW OPERATORS is pressed
+        ReturnType: Boolean
+        Default: =false
+      ProductName:
+        PropertyKind: Input
+        DisplayName: ProductName
+        Description: Product name
+        DataType: Text
+        Default: ="No Nasties Hair Paste"
+      ProductionStartTime:
+        PropertyKind: Input
+        DisplayName: ProductionStartTime
+        Description: Production start time display string
+        DataType: Text
+        Default: ="14:32"
+      Rejects:
+        PropertyKind: Input
+        DisplayName: Rejects
+        Description: Total rejected units
+        DataType: Text
+        Default: ="0"
+      SecondsRemaining:
+        PropertyKind: Input
+        DisplayName: SecondsRemaining
+        Description: Seconds remaining until next weigh check - drive this from a Timer on the screen
+        DataType: Number
+        Default: =900
+      UnitsProduced:
+        PropertyKind: Input
+        DisplayName: UnitsProduced
+        Description: Total units produced
+        DataType: Text
+        Default: ="0"
+      UnitsWeighed:
+        PropertyKind: Input
+        DisplayName: UnitsWeighed
+        Description: Total units weighed so far
+        DataType: Text
+        Default: ="0"
+      WeighCheckSeconds:
+        PropertyKind: Input
+        DisplayName: WeighCheckSeconds
+        Description: Countdown interval in seconds between weigh checks (default 900 = 15 min)
+        DataType: Number
+        Default: =900
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_lp_2:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_lp_2:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(22, 75, 80, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_live_badge_lp_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="● LIVE"
+                        Width: =60
+                  - lbl_title_lp_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =LiveProduction.LineNumber & " — " & LiveProduction.JobOrder
+                  - lbl_starttime_lp_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(255, 180, 180, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =47
+                        Size: =11
+                        Text: ="Started " & LiveProduction.ProductionStartTime
+                        Width: =160
+            - cont_timer_lp_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =If(LiveProduction.SecondsRemaining <= 0, RGBA(46, 182, 143, 1), RGBA(30, 30, 30, 1))
+                  FillPortions: =0
+                  Height: =72
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =16
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_timer_icon_lp_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =If(LiveProduction.SecondsRemaining <= 0, RGBA(255, 255, 255, 1), RGBA(160, 190, 230, 1))
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =72
+                        Size: =20
+                        Text: ="⏱"
+                        Width: =32
+                  - lbl_timer_label_lp_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =If(LiveProduction.SecondsRemaining <= 0, RGBA(255, 255, 255, 1), RGBA(160, 160, 160, 1))
+                        Font: =Font.'Open Sans'
+                        Height: =72
+                        Size: =12
+                        Text: =If(LiveProduction.SecondsRemaining <= 0, "WEIGH CHECK DUE NOW", "NEXT WEIGH CHECK IN")
+                        Width: =200
+                  - lbl_timer_countdown_lp_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =72
+                        Size: =28
+                        Text: =If(LiveProduction.SecondsRemaining <= 0, "00:00", Text(Int(LiveProduction.SecondsRemaining/60),"00") & ":" & Text(Mod(LiveProduction.SecondsRemaining,60),"00"))
+                  - cont_timer_bar_lp_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(50, 50, 50, 1)
+                        Height: =10
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Width: =260
+                      Children:
+                        - cont_timer_fill_lp_1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.SetByContainer
+                              DropShadow: =DropShadow.None
+                              Fill: =If(LiveProduction.SecondsRemaining <= 0, RGBA(46, 182, 143, 1), RGBA(83, 178, 200, 1))
+                              Height: =10
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              RadiusBottomLeft: =5
+                              RadiusBottomRight: =5
+                              RadiusTopLeft: =5
+                              RadiusTopRight: =5
+                              Width: =If(LiveProduction.WeighCheckSeconds > 0, 260 * (LiveProduction.SecondsRemaining / LiveProduction.WeighCheckSeconds), 0)
+            - cont_metrics_lp_2:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =148
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_units_lp_2:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(36, 36, 36, 1)
+                        Height: =148
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =12
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =12
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_units_key_lp_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(120, 120, 120, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="UNITS PRODUCED"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_units_val_lp_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(83, 178, 200, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =100
+                              Size: =58
+                              Text: =LiveProduction.UnitsProduced
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_rejects_lp_2:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(50, 25, 25, 1)
+                        Height: =148
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =12
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =12
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_rejects_key_lp_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(180, 100, 100, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="REJECTS"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_rejects_val_lp_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(220, 80, 80, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =100
+                              Size: =58
+                              Text: =LiveProduction.Rejects
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_weighed_lp_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(20, 50, 90, 1)
+                        Height: =148
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =12
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =12
+                        RadiusBottomLeft: =10
+                        RadiusBottomRight: =10
+                        RadiusTopLeft: =10
+                        RadiusTopRight: =10
+                      Children:
+                        - lbl_weighed_key_lp_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(160, 190, 230, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =22
+                              Size: =11
+                              Text: ="UNITS WEIGHED"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_weighed_val_lp_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Color: =RGBA(255, 255, 255, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =100
+                              Size: =58
+                              Text: =LiveProduction.UnitsWeighed
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_actions_lp_2:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =100
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =1
+                  Width: =Parent.Width
+                Children:
+                  - btn_update_units_lp_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(83, 178, 200, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(83, 178, 200, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(83, 178, 200, 1), -20%)
+                        OnSelect: =LiveProduction.OnUpdateUnitsPressed()
+                        PressedFill: =ColorFade(RGBA(83, 178, 200, 1), -35%)
+                        Size: =14
+                        Text: ="+ UPDATE UNITS"
+                  - btn_update_rejects_lp_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(200, 70, 70, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(200, 70, 70, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                        OnSelect: =LiveProduction.OnUpdateRejectsPressed()
+                        PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                        Size: =14
+                        Text: ="+ UPDATE REJECTS"
+                  - btn_log_weigh_lp_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(LiveProduction.SecondsRemaining <= 0, RGBA(46, 182, 143, 1), RGBA(20, 50, 90, 1))
+                        BorderThickness: =If(LiveProduction.SecondsRemaining <= 0, 2, 0)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =If(LiveProduction.SecondsRemaining <= 0, RGBA(46, 182, 143, 1), RGBA(20, 50, 90, 1))
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =If(LiveProduction.SecondsRemaining <= 0, ColorFade(RGBA(46, 182, 143, 1), -20%), ColorFade(RGBA(20, 50, 90, 1), -20%))
+                        OnSelect: =LiveProduction.OnLogWeighSamplePressed()
+                        PressedFill: =If(LiveProduction.SecondsRemaining <= 0, ColorFade(RGBA(46, 182, 143, 1), -35%), ColorFade(RGBA(20, 50, 90, 1), -35%))
+                        Size: =14
+                        Text: ="⚖ LOG WEIGH SAMPLE"
+            - cont_nav_lp_2:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =112
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =3
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_view_operators_lp_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(20, 50, 90, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(20, 50, 90, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Normal
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(20, 50, 90, 1), -20%)
+                        OnSelect: =LiveProduction.OnViewOperatorsPressed()
+                        PressedFill: =ColorFade(RGBA(20, 50, 90, 1), -35%)
+                        Size: =14
+                        Text: ="VIEW OPERATORS"
+                  - btn_view_jobinfo_lp_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(20, 50, 90, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(20, 50, 90, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Normal
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(20, 50, 90, 1), -20%)
+                        OnSelect: =LiveProduction.OnViewJobInfoPressed()
+                        PressedFill: =ColorFade(RGBA(20, 50, 90, 1), -35%)
+                        Size: =14
+                        Text: ="VIEW JOB INFO"
+                  - btn_end_production_lp_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(140, 20, 20, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(26, 26, 26, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(140, 20, 20, 1)
+                        OnSelect: =LiveProduction.OnEndProductionPressed()
+                        PressedFill: =ColorFade(RGBA(140, 20, 20, 1), -20%)
+                        Size: =14
+                        Text: ="END PRODUCTION"
+            - cont_failure_lp_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =105
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =6
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - btn_log_failure_lp_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(200, 140, 0, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(200, 140, 0, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                        OnSelect: =LiveProduction.OnLogFailurePressed()
+                        PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                        Size: =14
+                        Text: ="⚠ LOG FAILURE"
+                  - btn_resume_line_lp:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(LiveProduction.LineStopped, RGBA(46, 182, 143, 1), RGBA(50, 50, 50, 1))
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(LiveProduction.LineStopped, DisplayMode.Edit, DisplayMode.Disabled)
+                        Fill: =If(LiveProduction.LineStopped, RGBA(46, 182, 143, 1), RGBA(45, 45, 45, 1))
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(46, 182, 143, 1), -20%)
+                        OnSelect: =LiveProduction.OnResumeLinePressed()
+                        PressedFill: =ColorFade(RGBA(46, 182, 143, 1), -35%)
+                        Size: =14
+                        Text: =If(LiveProduction.LineStopped, "▶ RESUME LINE", "● LINE RUNNING")

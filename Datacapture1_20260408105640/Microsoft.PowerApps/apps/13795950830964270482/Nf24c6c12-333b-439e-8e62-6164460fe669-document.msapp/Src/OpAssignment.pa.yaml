@@ -1,0 +1,138 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  OpAssignment:
+    Properties:
+      Fill: =MainBackground
+      ImagePosition: =ImagePosition.Center
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: =Set(varBatchText, "")
+    Children:
+      - OperatorAssignment_1:
+          Control: CanvasComponent
+          ComponentName: OperatorAssignment
+          Properties:
+            Height: =614
+            LineName: ="Cold Fill Line"
+            LineNumber: ="Line 2"
+            OnBackPressed: =Navigate(WorkOrder2, ScreenTransition.None)
+            OnConfirmPressed: |-
+              =Set(varOperators, {
+                  PreProd:    OperatorAssignment_1.PreProductionOperator,
+                  ApprovedBy: OperatorAssignment_1.ApprovedBy,
+                  Cleaning:   OperatorAssignment_1.CleaningBottle,
+                  SrtPacker:  OperatorAssignment_1.SrtBoxPacker,
+                  Cartoniser: OperatorAssignment_1.Cartoniser,
+                  Filler:     OperatorAssignment_1.Filler,
+                  Labeller:   OperatorAssignment_1.Labeller
+              });
+              Navigate(Production_Start, ScreenTransition.None)
+            StaffList: =Concat(colStaff, Title & ",")
+            SupervisorList: =Concat(Filter(colStaff, Role = "Supervisor"), Title & ",")
+            Width: =1024
+      - Status_7:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(83, 180, 204, 0.47)
+            Height: =0
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            PaddingLeft: =10
+            PaddingRight: =7.50
+            PaddingTop: =0.75
+            Visible: =false
+            Width: =App.Width
+            X: =0.00
+          Children:
+            - Image1_7:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =Parent.Height
+                  Image: ='concept (1) (1) (1)'
+                  ImagePosition: =ImagePosition.Stretch
+                  PaddingBottom: =2
+                  PaddingRight: =0.00
+                  PaddingTop: =2
+                  Visible: =false
+                  Width: =149.93
+                  X: =10.00
+            - Timer1_7:
+                Control: Timer@2.1.0
+                Properties:
+                  AutoStart: =true
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+                  DisabledColor: =ColorFade(Self.Fill, 90%)
+                  DisabledFill: =ColorFade(Self.Fill, 70%)
+                  Duration: =1000
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnTimerEnd: =Set(CurrentTime, Now())
+                  PaddingRight: =3.75
+                  PaddingTop: =3.75
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  Repeat: =true
+                  Size: =9.75
+                  Visible: =false
+                  Width: =119.94
+                  X: =0.00
+            - ClockScreen_7:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisplayMode: =DisplayMode.View
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  PaddingRight: =3.75
+                  PaddingTop: =3.75
+                  Size: =15
+                  Text: =Text(CurrentTime, DateTimeFormat.LongTime)
+                  Visible: =false
+                  Width: =112.45
+                  X: =904.00
+            - Centre_7:
+                Control: GroupContainer@1.5.0
+                Variant: ManualLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =Parent.Height
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingRight: =0.00
+                  PaddingTop: =0.00
+                  Width: =744.00
+                  X: =160.00
+                Children:
+                  - HtmlText1_4:
+                      Control: HtmlViewer@2.1.0
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(252, 250, 250, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        Font: =Font.'Open Sans'
+                        Height: =42
+                        HtmlText: =
+                        Size: =15
+                        Width: =178
+                        X: =304
+                        Y: =4

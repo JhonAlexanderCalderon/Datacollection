@@ -1,0 +1,529 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  numpad:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      Default:
+        PropertyKind: Input
+        DisplayName: Default
+        Description: Valor inicial del display
+        DataType: Text
+        Default: =""
+      OnConfirm:
+        PropertyKind: Event
+        DisplayName: OnConfirm
+        Description: Fires when CONFIRM is pressed
+        ReturnType: Boolean
+        Default: =false
+      Value:
+        PropertyKind: Output
+        DisplayName: Value
+        Description: Valor actual del display
+        DataType: Text
+    Properties:
+      Height: =614
+      Value: =varNumpad
+      Width: =1024
+    Children:
+      - cont_numpad_root_1:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - cont_header_3:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(22, 75, 80, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - lbl_header_title_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height
+                        Size: =14
+                        Text: ="WORK ORDER"
+                  - lbl_header_line_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        AlignInContainer: =AlignInContainer.Center
+                        Color: =RGBA(255, 255, 255, 0.5)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =Parent.Height
+                        Size: =11
+                        Text: ="Line 2 — Cold Fill"
+            - cont_body_1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =6
+                  PaddingBottom: =6
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - cont_input_row_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        FillPortions: =0
+                        Height: =64
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        PaddingBottom: =2
+                        PaddingTop: =2
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                      Children:
+                        - cont_display_1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              BorderColor: =RGBA(83, 178, 200, 1)
+                              BorderThickness: =2
+                              DropShadow: =DropShadow.None
+                              Fill: =RGBA(36, 36, 36, 1)
+                              Height: =Parent.Height - 2
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutJustifyContent: =LayoutJustifyContent.Center
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                            Children:
+                              - lbl_display_1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    AlignInContainer: =AlignInContainer.Center
+                                    Color: =RGBA(255, 255, 255, 0.9)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Bold
+                                    Height: =Parent.Height
+                                    Size: =24
+                                    Text: =If(IsBlank(varNumpad), "_ _ _ _ _ _ _ _", varNumpad)
+                                    Width: =Parent.Width
+                        - btn_dash:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(83, 178, 200, 1)
+                              Color: =RGBA(83, 178, 200, 1)
+                              Fill: =RGBA(26, 58, 74, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(83, 178, 200, 1)
+                              HoverFill: =ColorFade(RGBA(26, 58, 74, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "-")
+                              PressedFill: =ColorFade(RGBA(26, 58, 74, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =24
+                              Text: ="—"
+                              Visible: =false
+                              Width: =60
+                        - btn_del_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 140, 0, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                              OnSelect: =If(Len(varNumpad) > 0, Set(varNumpad, Left(varNumpad, Len(varNumpad) - 1)))
+                              PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =14
+                              Text: ="DEL"
+                              Width: =65
+                        - btn_clr_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              Fill: =RGBA(200, 70, 70, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(200, 70, 70, 1), -20%)
+                              OnSelect: =Set(varNumpad, "")
+                              PressedFill: =ColorFade(RGBA(200, 70, 70, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =14
+                              Text: ="CLR"
+                              Width: =65
+                  - cont_row1_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        FillPortions: =0
+                        Height: =157
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        PaddingBottom: =1
+                        PaddingTop: =1
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                      Children:
+                        - btn_W_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(83, 178, 200, 1)
+                              Color: =RGBA(83, 178, 200, 1)
+                              Fill: =RGBA(26, 58, 74, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(83, 178, 200, 1)
+                              HoverFill: =ColorFade(RGBA(26, 58, 74, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "W-")
+                              PressedFill: =ColorFade(RGBA(26, 58, 74, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="W"
+                        - btn_B_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(83, 178, 200, 1)
+                              Color: =RGBA(83, 178, 200, 1)
+                              Fill: =RGBA(26, 58, 74, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(83, 178, 200, 1)
+                              HoverFill: =ColorFade(RGBA(26, 58, 74, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "B")
+                              PressedFill: =ColorFade(RGBA(26, 58, 74, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="B"
+                        - btn_C_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(83, 178, 200, 1)
+                              Color: =RGBA(83, 178, 200, 1)
+                              Fill: =RGBA(26, 58, 74, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(83, 178, 200, 1)
+                              HoverFill: =ColorFade(RGBA(26, 58, 74, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "C")
+                              PressedFill: =ColorFade(RGBA(26, 58, 74, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="C"
+                        - btn_10:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "1")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="1"
+                        - btn_11:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "2")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="2"
+                  - cont_row2_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        FillPortions: =0
+                        Height: =157
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                      Children:
+                        - btn_12:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "3")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="3"
+                        - btn_13:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "4")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="4"
+                        - btn_14:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "5")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="5"
+                        - btn_15:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "6")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="6"
+                        - btn_16:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "7")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="7"
+                  - cont_row3_1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(26, 26, 26, 1)
+                        FillPortions: =0
+                        Height: =157
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =6
+                        Width: =Parent.Width - Parent.PaddingLeft - Parent.PaddingRight
+                      Children:
+                        - btn_17:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "8")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="8"
+                        - btn_18:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "9")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="9"
+                        - btn_19:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(51, 51, 51, 1)
+                              BorderThickness: =1
+                              Color: =RGBA(255, 255, 255, 0.9)
+                              Fill: =RGBA(36, 36, 36, 1)
+                              FillPortions: =1
+                              Font: =Font.'Open Sans'
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(36, 36, 36, 1), -20%)
+                              OnSelect: =Set(varNumpad, varNumpad & "0")
+                              PressedFill: =ColorFade(RGBA(36, 36, 36, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =32
+                              Text: ="0"
+                        - btn_confirm_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisplayMode: =If(IsBlank(varNumpad) || Len(varNumpad) < 5, DisplayMode.Disabled, DisplayMode.Edit)
+                              Fill: =If(Len(varNumpad) >= 5, RGBA(46, 182, 143, 1), RGBA(28, 110, 87, 1))
+                              FillPortions: =2
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =Parent.Height
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(46, 182, 143, 1), -20%)
+                              OnSelect: =numpad.OnConfirm()
+                              PressedFill: =ColorFade(RGBA(46, 182, 143, 1), -35%)
+                              RadiusBottomLeft: =8
+                              RadiusBottomRight: =8
+                              RadiusTopLeft: =8
+                              RadiusTopRight: =8
+                              Size: =18
+                              Text: ="CONFIRM"

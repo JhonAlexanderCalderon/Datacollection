@@ -1,0 +1,490 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  FaultMachineBreakdown:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      JobOrder:
+        PropertyKind: Input
+        DisplayName: JobOrder
+        Description: Numero de orden de trabajo
+        DataType: Text
+        Default: ="2GE0009"
+      LineNumber:
+        PropertyKind: Input
+        DisplayName: LineNumber
+        Description: Numero de la linea
+        DataType: Text
+        Default: ="Line 2"
+      OnCancelPressed:
+        PropertyKind: Event
+        DisplayName: OnCancelPressed
+        Description: Se dispara al presionar CANCEL - volver a LogFailure
+        ReturnType: Boolean
+        Default: =false
+      OnConfirmPressed:
+        PropertyKind: Event
+        DisplayName: OnConfirmPressed
+        Description: Se dispara al confirmar - leer varFaultDetail y varFaultNote
+        ReturnType: Boolean
+        Default: =false
+    Properties:
+      Height: =614
+      Width: =1024
+    Children:
+      - cont_root_mb:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(26, 26, 26, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =6
+            Width: =Parent.Width
+          Children:
+            - cont_header_mb:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(200, 140, 0, 1)
+                  FillPortions: =0
+                  Height: =47
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_title_mb:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =16
+                        Text: =FaultMachineBreakdown.LineNumber & " — " & FaultMachineBreakdown.JobOrder
+                  - lbl_stage_mb:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        Color: =RGBA(255, 240, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =47
+                        Size: =11
+                        Text: ="⚠ MACHINE BREAKDOWN"
+                        Width: =220
+            - cont_instruct_mb:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(36, 36, 36, 1)
+                  FillPortions: =0
+                  Height: =34
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =0
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: =Parent.Width
+                Children:
+                  - lbl_instruct_mb:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(180, 180, 180, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =34
+                        Size: =12
+                        Text: ="SELECT FAULT TYPE"
+            - cont_row1_mb:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =170
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_airlock_mb:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Air Lock", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Air Lock", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Air Lock", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_airlock_mb:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z'/><path d='M12 8v4'/><path d='M12 16h.01'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Air Lock")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_airlock_mb:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Air Lock")
+                              Size: =14
+                              Text: ="Air Lock"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_mechjam_mb:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Mechanical Jam", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Mechanical Jam", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Mechanical Jam", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_mechjam_mb:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Mechanical Jam")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_mechjam_mb:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Mechanical Jam")
+                              Size: =14
+                              Text: ="Mechanical Jam"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_taperbottom_mb:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Taper Bottom Fault", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Taper Bottom Fault", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Taper Bottom Fault", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_taperbottom_mb:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/><line x1='12' y1='22' x2='12' y2='12'/><line x1='3' y1='7' x2='12' y2='12'/><line x1='21' y1='7' x2='12' y2='12'/><line x1='8' y1='20' x2='8' y2='10'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Taper Bottom Fault")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_taperbottom_mb:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Taper Bottom Fault")
+                              Size: =14
+                              Text: ="Taper Bottom Fault"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_row2_mb:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =170
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Width: =Parent.Width
+                Children:
+                  - cont_conveyor_mb:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Conveyor / Motor", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Conveyor / Motor", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Conveyor / Motor", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_conveyor_mb:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='3'/><path d='M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Conveyor / Motor")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_conveyor_mb:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Conveyor / Motor")
+                              Size: =14
+                              Text: ="Conveyor / Motor"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_sensor_mb:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Sensor Fault", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Sensor Fault", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Sensor Fault", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_sensor_mb:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z'/><circle cx='12' cy='12' r='3'/><path d='M12 5v2M12 17v2M5 12H3M21 12h-2'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Sensor Fault")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_sensor_mb:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Sensor Fault")
+                              Size: =14
+                              Text: ="Sensor Fault"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - cont_maintenance_mb:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =If(varFaultDetail="Maintenance Required", RGBA(255, 255, 255, 1), RGBA(0, 0, 0, 0))
+                        BorderThickness: =If(varFaultDetail="Maintenance Required", 3, 0)
+                        DropShadow: =DropShadow.None
+                        Fill: =If(varFaultDetail="Maintenance Required", RGBA(200, 140, 0, 1), RGBA(60, 40, 0, 1))
+                        Height: =170
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        PaddingBottom: =14
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =14
+                        RadiusBottomLeft: =12
+                        RadiusBottomRight: =12
+                        RadiusTopLeft: =12
+                        RadiusTopRight: =12
+                      Children:
+                        - img_maintenance_mb:
+                            Control: Image@2.2.3
+                            Properties:
+                              Height: =90
+                              Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/><line x1='12' y1='19' x2='12' y2='22'/><line x1='19' y1='12' x2='22' y2='12'/></svg>")
+                              ImagePosition: =ImagePosition.Center
+                              OnSelect: =Set(varFaultDetail, "Maintenance Required")
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                        - lbl_maintenance_mb:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =52
+                              OnSelect: =Set(varFaultDetail, "Maintenance Required")
+                              Size: =14
+                              Text: ="Maintenance Required"
+                              Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_note_mb:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =99
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Vertical
+                  PaddingBottom: =6
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =6
+                  Width: =Parent.Width
+                Children:
+                  - lbl_note_key_mb:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(120, 120, 120, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =20
+                        Size: =11
+                        Text: ="NOTES (optional)"
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                  - txt_note_mb:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(60, 60, 60, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(36, 36, 36, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =61
+                        HintText: ="Add details about the fault..."
+                        HoverBorderColor: =RGBA(200, 140, 0, 1)
+                        Mode: =TextMode.MultiLine
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            - cont_actions_mb:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(26, 26, 26, 1)
+                  FillPortions: =0
+                  Height: =64
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =8
+                  PaddingBottom: =8
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =8
+                  Width: =Parent.Width
+                Children:
+                  - btn_cancel_mb:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(22, 75, 80, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =RGBA(22, 75, 80, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(22, 75, 80, 1), -20%)
+                        OnSelect: =Set(varFaultDetail, "") ;FaultMachineBreakdown.OnCancelPressed()
+                        PressedFill: =ColorFade(RGBA(22, 75, 80, 1), -35%)
+                        Size: =16
+                        Text: ="CANCEL"
+                  - btn_confirm_mb:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(IsBlank(varFaultDetail), DisplayMode.Disabled, DisplayMode.Edit)
+                        Fill: =If(IsBlank(varFaultDetail), RGBA(80, 55, 0, 1), RGBA(200, 140, 0, 1))
+                        FillPortions: =2
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(200, 140, 0, 1), -20%)
+                        OnSelect: =FaultMachineBreakdown.OnConfirmPressed()
+                        PressedFill: =ColorFade(RGBA(200, 140, 0, 1), -35%)
+                        Size: =16
+                        Text: ="LOG MACHINE BREAKDOWN"
